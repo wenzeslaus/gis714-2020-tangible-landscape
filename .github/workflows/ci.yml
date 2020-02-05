@@ -13,7 +13,6 @@ jobs:
       run: |
         sudo add-apt-repository --yes ppa:ubuntugis/ubuntugis-unstable
         sudo apt-get update
-        sudo apt-get upgrade --yes
         sudo apt-get install --yes grass grass-dev
     - name: Test GRASS GIS
       run: |
