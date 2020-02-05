@@ -22,7 +22,7 @@ jobs:
       id: cache
       with:
         path: ./nc_spm_08_grass7
-        key: ${{ runner.os }}-nc_spm_08_grass7
+        key: ${{ runner.os }}-data
     - name: Get sample data
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
