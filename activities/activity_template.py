@@ -28,7 +28,7 @@ def run_contours(scanned_elev, env, **kwargs):
 
 
 # this part is for testing without TL
-if __name__ == '__main__':
+def main():
     import os
 
     # we want to run this repetetively without deleted the created files
@@ -42,3 +42,7 @@ if __name__ == '__main__':
 
     run_slope(scanned_elev=elev_resampled, env=None)
     run_contours(scanned_elev=elev_resampled, env=None)
+
+
+if __name__ == '__main__':
+    main()
