@@ -17,3 +17,17 @@ jobs:
     - name: Test GRASS GIS
       run: |
         grass --tmp-location XY --exec g.version -e
+    - name: Cache sample data
+      id: cache-nc_spm_08_grass7
+      uses: actions/cache@v1
+      with:
+        path: nc_spm_08_grass7
+        key: ${{ runner.os }}-nc_spm_08_grass7
+    - name: Get sample data
+      if: steps.cache-nc_spm_08_grass7.outputs.cache-hit != 'true'
+      run: |
+        grass --tmp-location XY --exec g.extension g.download.location --verbose
+        grass --tmp-location XY --exec g.download.location url=https://grass.osgeo.org/sampledata/north_carolina/nc_spm_08_grass7.tar.gz --verbose
+    - name: Test functions
+      run: |
+        grass -c ~/nc_spm_08_grass7/test --exec g.list type=raster
