@@ -18,13 +18,13 @@ jobs:
       run: |
         grass --tmp-location XY --exec g.version -e
     - name: Cache sample data
-      id: cache-nc_spm_08_grass7
       uses: actions/cache@v1
+      id: cache
       with:
-        path: nc_spm_08_grass7
+        path: ./nc_spm_08_grass7
         key: ${{ runner.os }}-nc_spm_08_grass7
     - name: Get sample data
-      if: steps.cache-nc_spm_08_grass7.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         grass --tmp-location XY --exec g.extension g.download.location --verbose
         grass --tmp-location XY --exec g.download.location url=https://grass.osgeo.org/sampledata/north_carolina/nc_spm_08_grass7.tar.gz dbase=. --verbose
