@@ -24,18 +24,21 @@ def run_slope(scanned_elev, env, **kwargs):
 
 def run_contours(scanned_elev, env, **kwargs):
     interval = 5
-    gscript.run_command('r.contour', input=scanned_elev, output='contours', step=interval, flags='t', env=env)
+    gs.run_command('r.contour', input=scanned_elev, output='contours', step=interval, flags='t', env=env)
 
 
 # this part is for testing without TL
 if __name__ == '__main__':
     import os
+
+    # we want to run this repetetively without deleted the created files
     os.environ['GRASS_OVERWRITE'] = '1'
+
     elevation = 'elev_lid792_1m'
     elev_resampled = 'elev_resampled'
     # resampling to have similar resolution as with TL
     gs.run_command('g.region', raster=elevation, res=4, flags='a')
     gs.run_command('r.resamp.stats', input=elevation, output=elev_resampled)
+
     run_slope(scanned_elev=elev_resampled, env=None)
     run_contours(scanned_elev=elev_resampled, env=None)
-
