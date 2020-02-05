@@ -34,3 +34,6 @@ jobs:
     - name: Test execution of Python files
       run: |
         python3 ./tests/functions.py
+    - name: Test structure of JSON files
+      run: |
+        python3 ./tests/json_structure.py
