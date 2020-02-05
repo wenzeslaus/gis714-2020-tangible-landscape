@@ -28,7 +28,7 @@ class TestContentOfFiles(unittest.TestCase):
                 content = file_handle.read()
                 self.assertRegex(
                     content,
-                    "\nif __name__ == .__main__.:",
+                    r"\nif __name__ == .__main__.:",
                     msg=(
                         "File {full_path} does not contain"
                         " the 'if __name__...' part".format(**locals())
@@ -36,7 +36,7 @@ class TestContentOfFiles(unittest.TestCase):
                 )
                 self.assertRegex(
                     content,
-                    "\ndef run_.+\(",
+                    r"\ndef run_.+\(",
                     msg=(
                         "File {full_path} does not contain any functions"
                         " with the 'run_' prefix".format(**locals())
