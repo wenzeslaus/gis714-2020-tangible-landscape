@@ -29,7 +29,7 @@ class TestContentOfJsonFiles(unittest.TestCase):
             with open(full_path) as file_handle:
                 try:
                     content = json.load(file_handle)
-                except json.JSONDecodeError as err:
+                except json.JSONDecodeError as err:  # noqa: F841
                     self.fail(
                         "File {full_path} is not properly formatted JSON: {err}".format(
                             **locals()
