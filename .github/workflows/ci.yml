@@ -28,12 +28,19 @@ jobs:
       run: |
         grass --tmp-location XY --exec g.extension g.download.location --verbose
         grass --tmp-location XY --exec g.download.location url=https://grass.osgeo.org/sampledata/north_carolina/nc_spm_08_grass7.tar.gz dbase=. --verbose
-    - name: Test structure of Python files
-      run: |
-        python3 ./tests/functions_format.py
     - name: Test execution of Python files
       run: |
         python3 ./tests/functions.py
-    - name: Test structure of JSON files
+
+  content:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test content structure of Python files
+      run: |
+        python3 ./tests/functions_format.py
+    - name: Test content structure of JSON files
       run: |
         python3 ./tests/json_structure.py
