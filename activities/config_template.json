@@ -11,7 +11,7 @@
       ],
       "base": "elev_lid792_1m",
       "scanning_params": {"smooth": 10, "numscans": 1, "interpolate": true},
-      "analyses": "slope.py",
+      "analyses": "activity_template.py",
       "title": "Slope and contours"
     }
   ]
