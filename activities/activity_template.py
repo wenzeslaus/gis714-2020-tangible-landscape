@@ -37,5 +37,5 @@ if __name__ == '__main__':
     gs.run_command('g.region', raster=elevation, res=4, flags='a')
     gs.run_command('r.resamp.stats', input=elevation, output=elev_resampled)
     run_slope(scanned_elev=elev_resampled, env=None)
-    run_contours(scanned_elev=elev_resampled, env=env)
+    run_contours(scanned_elev=elev_resampled, env=None)
 
