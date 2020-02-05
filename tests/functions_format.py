@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Test for Python functions in files
+Test for required internal structure of Python files
 """
 
 import unittest

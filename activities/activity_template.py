@@ -3,7 +3,7 @@
 """
 Instructions
 
-- Functions intended to run fore each scan
+- Functions intended to run for each scan
   need to be named run_xxxxx
 
 - Do not modify the parameters of the run_xxx function
