@@ -37,9 +37,8 @@ class TestFunctionsInFiles(unittest.TestCase):
         """Deletes the mapset"""
         shutil.rmtree(self.mapset_path, ignore_errors=True)
 
-    def test_file_runs(self):
+    def test_files_run(self):
         """Check that files run"""
-
         for filename in os.listdir(self.path):
             full_path = os.path.join(self.path, filename)
             if not is_python_file(full_path):

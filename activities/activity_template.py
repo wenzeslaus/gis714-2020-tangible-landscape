@@ -3,7 +3,7 @@
 """
 Instructions
 
-- Functions intended to run fore each scan
+- Functions intended to run for each scan
   need to be named run_xxxxx
 
 - Do not modify the parameters of the run_xxx function
@@ -41,7 +41,7 @@ def run_function_with_points(scanned_elev, env, points=None, **kwargs):
 
 
 # this part is for testing without TL
-if __name__ == '__main__':
+def main():
     import os
 
     # we want to run this repetetively without deleted the created files
@@ -56,8 +56,14 @@ if __name__ == '__main__':
     # this will run all 3 examples (slope, contours, points)
     run_slope(scanned_elev=elev_resampled, env=None)
     run_contours(scanned_elev=elev_resampled, env=None)
+
     # create points
     points = 'points'
     gs.write_command('v.in.ascii', flags='t', input='-', output=points, separator='comma',
                      stdin='638432,220382\n638621,220607')
     run_function_with_points(scanned_elev=elev_resampled, env=None, points=points)
+
+
+if __name__ == '__main__':
+    main()
+
