@@ -29,6 +29,7 @@ def run_contours(scanned_elev, env, **kwargs):
 def run_function_with_points(scanned_elev, env, points=None, **kwargs):
     if not points:
         points = 'points'
+        import analyses
         analyses.change_detection('scan_saved', scanned_elev, points,
                                   height_threshold=[10, 100], cells_threshold=[5, 50],
                                   add=True, max_detected=5, debug=True, env=env)
