@@ -17,6 +17,23 @@ Instructions
 
 import grass.script as gs
 
+def run_example(scanned_elev, env, **kwargs):
+    gs.run_command('r.slope.aspect', elevation=scanned_elev, slope='slope',
+                        format='percent', env=env)
+    # reclassify using rules passed as a string to standard input
+    # 0:2:1 means reclassify interval 0 to 2 percent of slope to category 1 
+    rules = ['0:2:1', '2:5:2', '5:8:3', '8:15:4', '15:30:5', '30:*:6']
+    gs.write_command('r.recode', input='slope', output='slope_class',
+                          rules='-', stdin='\n'.join(rules), env=env)
+    # set new color table: green - yellow - red
+    gs.run_command('r.colors', map='slope_class', color='gyr', env=env)
+
+def run_curvatures(scanned_elev, env, **kwargs):
+    gs.run_command('r.param.scale', input=scanned_elev, output='profile_curv',
+                   method='profc', size=11, env=env)
+    gs.run_command('r.param.scale', input=scanned_elev, output='tangential_curv',
+                   method='crosc', size=11, env=env)
+    gs.run_command('r.colors', map=['profile_curv', 'tangential_curv'], color='curvature', env=env)
 
 def run_slope(scanned_elev, env, **kwargs):
     gs.run_command('r.slope.aspect', elevation=scanned_elev, slope='slope', env=env)
@@ -55,15 +72,16 @@ def main():
     gs.run_command('r.resamp.stats', input=elevation, output=elev_resampled)
 
     # this will run all 3 examples (slope, contours, points)
-    run_slope(scanned_elev=elev_resampled, env=None)
-    run_contours(scanned_elev=elev_resampled, env=None)
+    # run_slope(scanned_elev=elev_resampled, env=None)
+    # run_contours(scanned_elev=elev_resampled, env=None)
 
     # create points
     points = 'points'
     gs.write_command('v.in.ascii', flags='t', input='-', output=points, separator='comma',
                      stdin='638432,220382\n638621,220607')
-    run_function_with_points(scanned_elev=elev_resampled, env=None, points=points)
-
+    # run_function_with_points(scanned_elev=elev_resampled, env=None, points=points)
+    run_example(scanned_elev=elev_resampled, env=None)
+    run_curvatures(scanned_elev=elev_resampled, env=None)
 
 if __name__ == '__main__':
     main()

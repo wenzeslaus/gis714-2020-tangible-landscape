@@ -7,12 +7,15 @@
         ],
         [
           "d.vect", "map=contours", "color=77:77:77", "width=2"
+        ],
+        [
+          "d.rast", "map=tangential_curv"
         ]
       ],
       "base": "elev_lid792_1m",
       "scanning_params": {"smooth": 10, "zexag": 2, "numscans": 1, "interpolate": true},
       "calibrate": true,
-      "analyses": "activity_template.py",
+      "analyses": "activity_XiaojieGao.py",
       "title": "Slope and contours"
     }
   ]
