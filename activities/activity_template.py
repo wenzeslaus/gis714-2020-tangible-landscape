@@ -28,14 +28,14 @@ def run_contours(scanned_elev, env, **kwargs):
 
 def run_function_with_points(scanned_elev, env, points=None, **kwargs):
     if not points:
-	points = 'points'
+        points = 'points'
         analyses.change_detection('scan_saved', scanned_elev, points,
                                   height_threshold=[10, 100], cells_threshold=[5, 50],
                                   add=True, max_detected=5, debug=True, env=env)
     # read coordinates into a list
     point_list = []
-    data = gscript.read_command('v.out.ascii', input=points, type='point',
-                                format='point', separator='comma', env=env).strip().splitlines()
+    data = gs.read_command('v.out.ascii', input=points, type='point',
+                           format='point', separator='comma', env=env).strip().splitlines()
     for point in data:
         point_list.append([float(p) for p in point.split(',')])
 
