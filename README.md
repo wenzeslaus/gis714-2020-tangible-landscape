@@ -4,10 +4,19 @@
 
 ## How to add a new activity
 
+To add a new activity to this project, you need to fork this repository, create a branch, create a pull request,
+and of course develop your new activity. The following sections go over the specific steps.
+A later section discusses how to modify an action later on using another pull request.
+
 ### Set up your repository
 
+To be able to create pull request, you will need to set up a fork and a local repository on your computer
+(to make changes and to test code locally):
+
 1. Fork this repository on GitHub.
+   * In the web interface, there is a *Fork* button.
 1. Clone your fork on your computer.
+   * For example, in the command line, use the `git clone` commmand.
 
 ### Develop new analysis
 
@@ -32,6 +41,8 @@
 
 ### Create a pull request
 
+Once you have your new files ready, you can do all the Git related steps
+(you could do them as your are working, too).
 We will use command line here, but you can use any Git desktop tool including GitHub Desktop.
 
 Create a new branch for your chaneges and switch to it (here, we will call it `add-awesome-activity`):
