@@ -1,0 +1,18 @@
+{
+  "tasks": [
+      {
+      "layers": [
+        [
+          "d.rast", "map=watershed_slope"
+        ],
+        [
+          "d.vect", "map=watersheds", "color=77:77:77", "width=2", "fill_color=none"
+        ]
+      ],
+      "base": "elev_lid792_1m",
+      "scanning_params": {"smooth": 10, "numscans": 1, "interpolate": true},
+      "analyses": "watershed_stuff.py",
+      "title": "Hyro and Watershed"
+    }
+  ]
+}
