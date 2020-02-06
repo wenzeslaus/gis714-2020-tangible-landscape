@@ -1,5 +1,7 @@
 # NCSU GIS 714 Spring 2020: Tangible Landscape
 
+![CI](https://github.com/ncsu-geoforall-lab/gis714-2020-tangible-landscape/workflows/CI/badge.svg)
+
 ## How to add a new activity
 
 ### Set up your repository
