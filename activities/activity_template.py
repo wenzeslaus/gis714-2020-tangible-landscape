@@ -26,6 +26,19 @@ def run_contours(scanned_elev, env, **kwargs):
     interval = 5
     gs.run_command('r.contour', input=scanned_elev, output='contours', step=interval, flags='t', env=env)
 
+def run_function_with_points(scanned_elev, env, points=None, **kwargs):
+    if not points:
+	points = 'points'
+        analyses.change_detection('scan_saved', scanned_elev, points,
+                                  height_threshold=[10, 100], cells_threshold=[5, 50],
+                                  add=True, max_detected=5, debug=True, env=env)
+    # read coordinates into a list
+    point_list = []
+    data = gscript.read_command('v.out.ascii', input=points, type='point',
+                                format='point', separator='comma', env=env).strip().splitlines()
+    for point in data:
+        point_list.append([float(p) for p in point.split(',')])
+
 
 # this part is for testing without TL
 if __name__ == '__main__':
@@ -40,5 +53,11 @@ if __name__ == '__main__':
     gs.run_command('g.region', raster=elevation, res=4, flags='a')
     gs.run_command('r.resamp.stats', input=elevation, output=elev_resampled)
 
+    # this will run all 3 examples (slope, contours, points)
     run_slope(scanned_elev=elev_resampled, env=None)
     run_contours(scanned_elev=elev_resampled, env=None)
+    # create points
+    points = 'points'
+    gs.write_command('v.in.ascii', flags='t', input='-', output=points, separator='comma',
+                     stdin='638432,220382\n638621,220607')
+    run_function_with_points(scanned_elev=elev_resampled, env=None, points=points)
