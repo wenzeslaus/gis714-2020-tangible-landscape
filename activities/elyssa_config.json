@@ -1,0 +1,15 @@
+{
+  "tasks": [
+      {
+      "layers": [
+        [
+          "d.rast", "map=flow"
+        ]
+      ],
+      "base": "elev_lid792_1m",
+      "scanning_params": {"smooth": 10, "numscans": 1, "interpolate": true},
+      "analyses": "elyssa.py",
+      "title": "Overland Water Flow Simulation"
+    }
+  ]
+}
